@@ -8,6 +8,9 @@ const Page = () => {
   const [usernameValue, setUsernameValue] = useState("");
   const [passwordValue, setPasswordValue] = useState("");
   const [usernameError, setUsernameError] = useState(false);
+  const [passwordError, setPasswordError] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+
   const getUsernameValue = (e: { target: { value: string } }) => {
     setUsernameValue(e.target.value);
   };
@@ -15,15 +18,15 @@ const Page = () => {
     setPasswordValue(e.target.value);
   };
 
-  const checkUsername = () => {
-    if (usernameValue.length == 0) {
+  const checkUserAndPass = () => {
+    if (usernameValue.length == 0 && passwordValue.length == 0) {
       setUsernameError(true);
+      setPasswordError(true);
     } else {
       setUsernameError(false);
+      setPasswordError(false);
     }
   };
-
-  const checkPassword = () => {};
 
   return (
     <div className="w-screen h-screen flex flex-col justify-center items-center bg-black space-y-20">
@@ -39,14 +42,28 @@ const Page = () => {
         {usernameError == true && (
           <div className="text-red-600">Hooson bj bolku</div>
         )}
-        <Input
-          className="w-3/4 bg-zinc-900 text-gray-50"
-          placeholder="Password"
-          type="Password"
-          value={passwordValue}
-          onChange={getPasswordValue}
-        />{" "}
-        <Button className="w-3/4 bg-blue-700" onClick={checkUsername}>
+        <div className="flex w-3/4 bg-zinc-900 border border-input border-black">
+          <Input
+            className="w-3/4 bg-zinc-900 text-gray-50"
+            placeholder="Password"
+            type={showPassword ? "text" : "password"}
+            value={passwordValue}
+            onChange={getPasswordValue}
+          />{" "}
+          <Button
+            className=" dark:text-white bg-zinc-900  text-gray-50 justify-center "
+            type="button"
+            onClick={() => {
+              setShowPassword((prev) => !prev);
+            }}
+          >
+            {showPassword ? "Hide" : "Show"}
+          </Button>
+        </div>
+        {passwordError == true && (
+          <div className="text-red-600">Hooson bj bolku</div>
+        )}
+        <Button className="w-3/4 bg-blue-700" onClick={checkUserAndPass}>
           Log in
         </Button>
       </div>

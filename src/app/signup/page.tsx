@@ -1,6 +1,7 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import Link from "next/link";
 import { useState } from "react";
 
 const Page = () => {
@@ -20,20 +21,26 @@ const Page = () => {
     setPasswordValue(e.target.value);
   };
   const checkSignup = () => {
-    if (
-      emailValue.length &&
-      usernameValue.length &&
-      passwordValue.length === 0
-    ) {
-      setPasswordError(true);
+    if (emailValue.length === 0) {
       setEmailError(true);
+    } else {
+      setEmailError(false);
+    }
+    if (usernameValue.length === 0) {
       setUsernameError(true);
+    } else {
+      setUsernameError(false);
+    }
+    if (passwordValue.length === 0) {
+      setPasswordError(true);
+    } else {
+      setPasswordError(false);
     }
   };
   return (
     <div className="w-screen h-screen flex flex-col justify-center items-center bg-black space-y-10">
       <div className="italic text-white font-serif text-5xl">Instagram</div>
-      <div className="flex justify-center w-screen text-wrap">
+      <div className="flex justify-center w-screen text-wrap items-center">
         <div className=" flex items-center  text-gray-400 font-mono font-bold text-xl w-3/4 text-wrap">
           Sign up to see photos and videos from your friend.
         </div>
@@ -75,7 +82,9 @@ const Page = () => {
       </div>
       <div className="flex space-x-2">
         <div className="text-white">Have an account?</div>
-        <button className="text-blue-600">Log in</button>
+        <Link className="text-blue-600" href={"/login"}>
+          Log in
+        </Link>
       </div>
     </div>
   );

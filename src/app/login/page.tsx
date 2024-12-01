@@ -19,11 +19,14 @@ const Page = () => {
   };
 
   const checkUserAndPass = () => {
-    if (usernameValue.length == 0 && passwordValue.length == 0) {
+    if (usernameValue.length == 0) {
       setUsernameError(true);
-      setPasswordError(true);
     } else {
       setUsernameError(false);
+    }
+    if (passwordValue.length == 0) {
+      setPasswordError(true);
+    } else {
       setPasswordError(false);
     }
   };
@@ -69,7 +72,7 @@ const Page = () => {
       </div>
       <div className="flex space-x-2">
         <div className="text-white"> Don't have an account?</div>
-        <Link href="../signup/page.tsx" className="text-blue-600">
+        <Link href="/signup" className="text-blue-600">
           Sign up
         </Link>
       </div>

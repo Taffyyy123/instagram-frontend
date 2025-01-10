@@ -36,7 +36,7 @@ const BottomNav = () => {
         </Button>
       </Link>
       {userId && (
-        <Link className="w-1/3 bg-black" href={`/profile/${userId}`}>
+        <Link className="w-1/3 bg-black" href={`/posts/profile/${userId}`}>
           <Button className="w-1/3 bg-black text-xl">
             <CircleUserRound />
           </Button>

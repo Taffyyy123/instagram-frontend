@@ -46,7 +46,8 @@ const Page = () => {
         setUsernameValue("");
         const access = data.token;
         localStorage.setItem("accessToken", access);
-      });
+      })
+      .then(() => (window.location.href = "/posts"));
   };
 
   return (

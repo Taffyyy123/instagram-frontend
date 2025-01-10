@@ -1,4 +1,4 @@
-// File: /Users/24HP0016/Desktop/IG/web/src/app/posts/user/[userId]/page.tsx
+// File: /Users/tsolmn/Desktop/instagram-frontend/src/app/posts/user/[userId]/page.tsx
 import * as entry from '../../../../../../src/app/posts/user/[userId]/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

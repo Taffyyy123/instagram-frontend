@@ -8,6 +8,7 @@ import {
   CardHeader,
 } from "@/components/ui/card";
 import BottomNav from "@/custom-components/BottomNav";
+import FollowButton from "@/custom-components/FollowButton";
 import { userType } from "@/custom-components/isLiked";
 import { use, useEffect, useState } from "react";
 
@@ -51,9 +52,7 @@ const Page = ({ params }: { params: Promise<{ userId: string }> }) => {
           <div className="h-1/3 font-extrabold text-xl flex justify-start items-center text-white">
             {user?.username}
           </div>
-          <button className="h-1/3 text-white w-3/4 bg-blue-600 font-sans font-bold text-base rounded-lg">
-            Follow
-          </button>
+          <FollowButton userData={user} />
         </div>
       </CardHeader>
       <CardDescription className="w-screen flex flex-col items-center pt-5 ">
@@ -90,7 +89,9 @@ const Page = ({ params }: { params: Promise<{ userId: string }> }) => {
           })}
         </CardFooter>
       )}
-      <BottomNav />
+      <div className="w-screen fixed bottom-0 left-0 bg-black">
+        <BottomNav />
+      </div>
     </Card>
   );
 };

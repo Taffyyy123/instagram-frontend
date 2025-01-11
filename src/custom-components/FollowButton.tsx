@@ -38,18 +38,16 @@ const followingButtonStyles: CSS.Properties = {
 const FollowButton = ({ userData }: { userData: userType | undefined }) => {
   const [isFollowed, setIsFollowed] = useState<boolean>(false);
   const [userId, setUserId] = useState("");
-
   const decodedToken = jwtDecode<JwtPayLoad>(
     localStorage.getItem("accessToken") ?? ""
   );
 
   const checkFollowed = () => {
-    if (userData && userData.followers) {
-      const isAlreadyFollowed = userData.followers.some(
-        (follower) => follower._id === decodedToken.userId
-      );
-      setIsFollowed(isAlreadyFollowed);
-    }
+    userData?.followers.map((follower) => {
+      if (follower._id == decodedToken.userId) {
+        setIsFollowed(true);
+      }
+    });
   };
 
   const handleFollowUser = async () => {
@@ -58,7 +56,6 @@ const FollowButton = ({ userData }: { userData: userType | undefined }) => {
       alert("Please login to follow users");
       return;
     }
-
     try {
       if (isFollowed) {
         await fetch(
@@ -70,7 +67,7 @@ const FollowButton = ({ userData }: { userData: userType | undefined }) => {
               "Content-Type": "application/json",
             },
             body: JSON.stringify({
-              follower: userData?._id,
+              followersId: userData?._id,
             }),
           }
         );
@@ -85,7 +82,7 @@ const FollowButton = ({ userData }: { userData: userType | undefined }) => {
               "Content-Type": "application/json",
             },
             body: JSON.stringify({
-              follower: userData?._id,
+              userId: userData?._id,
             }),
           }
         );

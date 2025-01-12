@@ -2,11 +2,11 @@
 import { Input } from "@/components/ui/input";
 import BottomNav from "@/custom-components/BottomNav";
 import { userType } from "@/custom-components/isLiked";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 const Page = () => {
   const [users, setUsers] = useState<userType[]>([]);
-  const getUsers = async () => {
+  const getUsers = useCallback(async () => {
     const token = localStorage.getItem("accessToken");
     const jsonData = await fetch(
       "https://instagram-backend-e3eq.onrender.com/user/getAllUser",
@@ -20,10 +20,10 @@ const Page = () => {
     );
     const response = await jsonData.json();
     setUsers(response);
-  };
-  useEffect(() => {
-    getUsers;
   }, []);
+  useEffect(() => {
+    getUsers();
+  }, [getUsers]);
   useEffect(() => {
     console.log(users);
   }, [users]); //

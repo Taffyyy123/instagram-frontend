@@ -2,6 +2,7 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import BottomNav from "@/custom-components/BottomNav";
+import Image from "next/image";
 import { useState } from "react";
 
 const Page = () => {
@@ -122,7 +123,11 @@ const Page = () => {
         <div className="text-center w-90%">
           {uploadedImages.map((img, index) => (
             <div className=" flex flex-col items-center gap-4" key={index}>
-              <img src={img} className="aspect-auto rounded-lg shadow-lg" />
+              <Image
+                src={img}
+                className="aspect-auto rounded-lg shadow-lg"
+                alt="Description"
+              />
               <Input
                 className="text-white aspect-auto"
                 onChange={getCaptionValue}

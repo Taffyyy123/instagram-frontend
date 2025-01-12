@@ -2,7 +2,7 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const Page = () => {
   const [emailValue, setEmailValue] = useState("");

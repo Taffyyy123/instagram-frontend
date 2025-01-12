@@ -2,17 +2,14 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { useState } from "react";
 
 const Page = () => {
-  const [user, setUser] = useState(null);
   const [usernameValue, setUsernameValue] = useState("");
   const [passwordValue, setPasswordValue] = useState("");
   const [usernameError, setUsernameError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  const [data, setData] = useState([]);
 
   const getUsernameValue = (e: { target: { value: string } }) => {
     setUsernameValue(e.target.value);
@@ -90,7 +87,7 @@ const Page = () => {
         </Button>
       </div>
       <div className="flex space-x-2">
-        <div className="text-white"> Don't have an account?</div>
+        <div className="text-white"> Don&apos;t have an account?</div>
         <Link href="/signup" className="text-blue-600">
           Sign up
         </Link>

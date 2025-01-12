@@ -2,7 +2,7 @@
 import { postType } from "@/app/posts/page";
 import { jwtDecode } from "jwt-decode";
 import { Heart } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 type JwtPayload = {
   exp: number;
   iat: number;
@@ -36,16 +36,16 @@ const IsLiked = ({
   const [isLiked, setIsLiked] = useState<boolean>(false);
   const decodedToken: JwtPayload = jwtDecode(token);
   const userId = decodedToken.userId;
-  const checkLiked = () => {
+  const checkLiked = useCallback(async () => {
     likedUsers.map((likedUser) => {
       if (likedUser._id == userId) {
         setIsLiked(true);
       }
     });
-  };
+  }, [likedUsers, userId]);
   useEffect(() => {
     checkLiked();
-  }, []);
+  }, [checkLiked]);
   const handleSubmitLike = (postId: string) => {
     if (isLiked) {
       setIsLiked(false);
@@ -75,17 +75,17 @@ const IsLiked = ({
       });
     }
   };
-  const getPostsLiked = async () => {
+  const getPostsLiked = useCallback(async () => {
     await fetch("https://instagram-backend-e3eq.onrender.com/post/getPosts", {
       headers: {
         Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       },
     });
-  };
+  }, [token]);
   useEffect(() => {
     getPostsLiked();
-  }, [isLiked]);
+  }, [getPostsLiked]);
 
   return (
     <div>

@@ -1,13 +1,11 @@
 "use client";
-import { use, useEffect, useState } from "react";
+import { use, useCallback, useEffect, useState } from "react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Avatar } from "@radix-ui/react-avatar";
-import { AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { AvatarImage } from "@/components/ui/avatar";
 import { X } from "lucide-react";
 import { Smile } from "lucide-react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { comment } from "postcss";
 
 export type userType = {
   _id: string;
@@ -27,18 +25,18 @@ const Page = ({ params }: { params: Promise<{ postId: string }> }) => {
   const handleInputChange = (event: { target: { value: string } }) => {
     setInputValue(event.target.value);
   };
-  const getComments = async () => {
+  const getComments = useCallback(async () => {
     const jsonData = await fetch(
       `https://instagram-backend-e3eq.onrender.com/post/${postId}`
     );
     const response = await jsonData.json();
     setComments(response);
     console.log(response);
-  };
+  }, [postId]);
 
   useEffect(() => {
     getComments();
-  }, [postId]);
+  }, [getComments]);
   const handleSubmitComment = () => {
     const token = localStorage.getItem("accessToken");
     fetch("https://instagram-backend-e3eq.onrender.com/comment/createComment", {

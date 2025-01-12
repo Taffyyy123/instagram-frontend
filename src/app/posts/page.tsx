@@ -1,38 +1,7 @@
 "use client";
 
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-} from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import { useState, useEffect } from "react";
-import { Heart, Home } from "lucide-react";
-import { MessageCircle } from "lucide-react";
-import { Send } from "lucide-react";
-import { Bookmark } from "lucide-react";
-import { Search } from "lucide-react";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
-import LikedUsersDialog from "../../custom-components/LikedUsersDialog";
-import IsLiked from "../../custom-components/isLiked";
 import { PostHeader } from "@/custom-components/PostHeader";
 import { PostContent } from "@/custom-components/PostContent";
 import { PostFooter } from "@/custom-components/PostFooter";

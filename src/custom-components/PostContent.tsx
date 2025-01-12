@@ -4,6 +4,7 @@ import {
   CarouselContent,
   CarouselItem,
 } from "@/components/ui/carousel";
+import Image from "next/image";
 
 export const PostContent = ({ postImage }: { postImage: string }) => {
   return (
@@ -12,9 +13,9 @@ export const PostContent = ({ postImage }: { postImage: string }) => {
         <CarouselContent>
           <CarouselItem>
             {" "}
-            <img src={postImage} className="w-screen" />
+            <Image src={postImage} alt="Description" width={500} height={500} />
           </CarouselItem>
-          <CarouselItem>
+          {/* <CarouselItem>
             {" "}
             <img src={postImage} className="w-screen" />
           </CarouselItem>
@@ -23,7 +24,7 @@ export const PostContent = ({ postImage }: { postImage: string }) => {
             <div>
               <img src={postImage} className="w-screen" />\
             </div>
-          </CarouselItem>
+          </CarouselItem> */}
         </CarouselContent>
       </Carousel>
     </CardContent>

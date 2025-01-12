@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { userType } from "./isLiked";
 import { jwtDecode } from "jwt-decode";
 import CSS from "csstype";
@@ -37,19 +37,20 @@ const followingButtonStyles: CSS.Properties = {
 
 const FollowButton = ({ userData }: { userData: userType | undefined }) => {
   const [isFollowed, setIsFollowed] = useState<boolean>(false);
-  const [userId, setUserId] = useState("");
   const decodedToken = jwtDecode<JwtPayLoad>(
     localStorage.getItem("accessToken") ?? ""
   );
 
-  const checkFollowed = () => {
+  const checkFollowed = useCallback(() => {
     userData?.followers.map((follower) => {
       if (follower._id == decodedToken.userId) {
         setIsFollowed(true);
       }
     });
-  };
-
+  }, [decodedToken.userId, userData?.followers]);
+  useEffect(() => {
+    checkFollowed();
+  }, [checkFollowed]);
   const handleFollowUser = async () => {
     const token = localStorage.getItem("accessToken");
     if (!token) {
@@ -93,9 +94,6 @@ const FollowButton = ({ userData }: { userData: userType | undefined }) => {
       alert("Something went wrong. Please try again.");
     }
   };
-  useEffect(() => {
-    checkFollowed();
-  }, [userData]);
   return (
     <div>
       {isFollowed ? (

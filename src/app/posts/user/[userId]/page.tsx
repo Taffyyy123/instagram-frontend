@@ -10,12 +10,13 @@ import {
 import BottomNav from "@/custom-components/BottomNav";
 import FollowButton from "@/custom-components/FollowButton";
 import { userType } from "@/custom-components/isLiked";
-import { use, useEffect, useState } from "react";
+import Image from "next/image";
+import { use, useCallback, useEffect, useState } from "react";
 
 const Page = ({ params }: { params: Promise<{ userId: string }> }) => {
   const { userId } = use(params);
   const [user, setUser] = useState<userType>();
-  const getUserData = async () => {
+  const getUserData = useCallback(async () => {
     const token = localStorage.getItem("accessToken");
     const jsonData = await fetch(
       `https://instagram-backend-e3eq.onrender.com/user/${userId}`,
@@ -29,10 +30,10 @@ const Page = ({ params }: { params: Promise<{ userId: string }> }) => {
     const response = await jsonData.json();
     console.log(response);
     setUser(response);
-  };
+  }, [userId]);
   useEffect(() => {
     getUserData();
-  }, []);
+  }, [getUserData]);
   const postCount = user?.posts.length;
   return (
     <Card className="w-screen h-screen bg-black border-none rounded-none relative">
@@ -83,7 +84,13 @@ const Page = ({ params }: { params: Promise<{ userId: string }> }) => {
           {user?.posts.map((post) => {
             return (
               <div key={post._id} className="p-0 w-[33%] mt-1">
-                <img src={post.postImg} className="aspect-square" />
+                <Image
+                  src={post.postImg}
+                  className="aspect-square"
+                  alt={"Description"}
+                  width={500}
+                  height={500}
+                />
               </div>
             );
           })}

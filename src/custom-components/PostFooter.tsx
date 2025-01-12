@@ -3,7 +3,6 @@ import IsLiked from "./isLiked";
 import { Bookmark, MessageCircle, Send } from "lucide-react";
 import LikedUsersDialog from "./LikedUsersDialog";
 import Link from "next/link";
-import { useState } from "react";
 
 type likeTypes = {
   proImg: string;

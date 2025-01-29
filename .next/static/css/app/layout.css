@@ -713,6 +713,9 @@ video {
 .w-9 {
   width: 2.25rem;
 }
+.w-\[300px\] {
+  width: 300px;
+}
 .w-\[33\%\] {
   width: 33%;
 }
@@ -903,6 +906,10 @@ video {
 }
 .border-input {
   border-color: hsl(var(--input));
+}
+.border-white {
+  --tw-border-opacity: 1;
+  border-color: rgb(255 255 255 / var(--tw-border-opacity, 1));
 }
 .bg-background {
   background-color: hsl(var(--background));

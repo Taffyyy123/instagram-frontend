@@ -25,7 +25,7 @@ const BottomNav = () => {
   }, []);
 
   return (
-    <div className="w-screen fixed bottom-0 left-0 bg-black">
+    <div className="w-screen fixed bottom-0 left-0 bg-black h-10">
       <Link className="w-1/4 bg-black" href={"/posts"}>
         <Button className="w-1/4 bg-black text-xl">
           <Home />

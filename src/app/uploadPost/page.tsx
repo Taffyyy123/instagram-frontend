@@ -117,7 +117,7 @@ const Page = () => {
       </div>
       {isPosted ? (
         <div className="text-white font-sans font-bold text-2xl">
-          Succesfully posted
+          Successfully posted
         </div>
       ) : (
         <div className="text-center w-90%">
@@ -125,15 +125,17 @@ const Page = () => {
             <div className=" flex flex-col items-center gap-4" key={index}>
               <Image
                 src={img}
-                className="aspect-auto rounded-lg shadow-lg"
+                className="aspect-auto rounded-lg shadow-lg w-[300px]"
                 alt="Description"
+                width={500}
+                height={500}
               />
               <Input
                 className="text-white aspect-auto"
                 onChange={getCaptionValue}
               />
               <Button
-                className="text-white bg-black font-sans"
+                className="text-white bg-black font-sans border border-white"
                 onClick={handleSumbitPost}
               >
                 Share

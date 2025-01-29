@@ -26,7 +26,7 @@ const Page = () => {
   }, [getUsers]);
   useEffect(() => {
     console.log(users);
-  }, [users]); //
+  }, [users]);
   return (
     <div className="w-screen h-screen bg-black flex flex-col items-center">
       <div className="text-white font-sans font-bold flex justify-center text-2xl p-3">

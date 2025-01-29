@@ -6,6 +6,7 @@ import { AvatarImage } from "@/components/ui/avatar";
 import { X } from "lucide-react";
 import { Smile } from "lucide-react";
 import Link from "next/link";
+import { postType } from "../page";
 
 export type userType = {
   _id: string;

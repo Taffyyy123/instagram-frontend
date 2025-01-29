@@ -10,6 +10,7 @@ import {
 import BottomNav from "@/custom-components/BottomNav";
 import { userType } from "@/custom-components/isLiked";
 import Image from "next/image";
+import Link from "next/link";
 import { use, useCallback, useEffect, useState } from "react";
 
 const Page = ({ params }: { params: Promise<{ userId: string }> }) => {
@@ -27,7 +28,6 @@ const Page = ({ params }: { params: Promise<{ userId: string }> }) => {
       }
     );
     const response = await jsonData.json();
-    console.log(response);
     setUser(response);
   }, [userId]);
   useEffect(() => {
@@ -129,7 +129,11 @@ const Page = ({ params }: { params: Promise<{ userId: string }> }) => {
         <CardFooter className="p-0 flex flex-wrap justify-between">
           {user?.posts.map((post) => {
             return (
-              <div key={post._id} className="p-0 w-[33%] mt-1">
+              <Link
+                key={post._id}
+                className="p-0 w-[33%] mt-1"
+                href={`/profile/post/${post._id}`}
+              >
                 <Image
                   src={post.postImg}
                   className="aspect-square"
@@ -137,7 +141,7 @@ const Page = ({ params }: { params: Promise<{ userId: string }> }) => {
                   width={500}
                   height={500}
                 />
-              </div>
+              </Link>
             );
           })}
         </CardFooter>

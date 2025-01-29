@@ -96,7 +96,7 @@ const Page = ({ params }: { params: Promise<{ userId: string }> }) => {
           })}
         </CardFooter>
       )}
-      <div className="w-screen fixed bottom-0 left-0 bg-black">
+      <div className="w-screen fixed bottom-0 left-0 bg-black h-10">
         <BottomNav />
       </div>
     </Card>
